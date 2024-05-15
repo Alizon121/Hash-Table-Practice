@@ -10,8 +10,13 @@ class KeyValuePair {
 
 class HashTable {
 
-  constructor(numBuckets = 4) {
-    // Your code here 
+  constructor(numBuckets) {
+    this.count = 0
+    this.capacity = numBuckets
+    this.data = new Array(this.capacity)
+    if (this.capacity) {
+      this.data.fill(null)
+    }
   }
 
   hash(key) {
