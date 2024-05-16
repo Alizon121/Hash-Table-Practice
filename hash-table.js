@@ -31,7 +31,27 @@ class HashTable {
   }
 
   insertNoCollisions(key, value) {
-    // Your code here 
+    // We need to insert key-value pairs in data array
+
+    let node = new KeyValuePair(key,value)
+
+    let indexKey = this.hashMod(key)
+    let indexVal = this.hashMod(value)
+
+    if (this.data[indexKey] === null) {
+      this.data[indexKey] = ({key, value})
+      this.count++
+    } else {
+      throw new Error('hash collision or same key/value pair already exists!')
+    }
+
+
+    // this.data[indexVal] = value
+
+    console.log(this.data)
+
+
+
   }
 
   insertWithHashCollisions(key, value) {
@@ -39,13 +59,16 @@ class HashTable {
   }
 
   insert(key, value) {
-    // Your code here 
+    // If hash collision occurs, throw new Error
+    // throw new Error ()
   }
 
 }
 
 
-let hashTable = new HashTable(4)
-console.log(hashTable.hash("ABC"))
+let hashTable = new HashTable(2)
+console.log(hashTable.insertNoCollisions("key-1", "val-1"))
+console.log(hashTable.data)
+console.log(hashTable.insertNoCollisions("key-2", "val-2"))
 
 module.exports = HashTable;
