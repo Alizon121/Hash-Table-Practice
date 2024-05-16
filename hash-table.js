@@ -20,30 +20,14 @@ class HashTable {
   }
 
   hash(key) {
-    let arr = [];
-    let result = [];
-    for (let i = 0; i < key.length; i++) {
-        let hashStr = sha256(key[i])
-        // return the first eight characters of the sha256 hash
-      arr.push(hashStr.substring(0,8))
+    // return the first eight characters of the sha256 hash
+        let hashStr = sha256(key).substring(0,8)
+        let int = parseInt(hashStr, 16)
+        return int
       }
 
-    for (let i = 0; i < arr.length; i++) {
-      result.push(parseInt(arr[i], 16))
-    }
-
-    let string = result.join()
-    console.log(Number(string))
-    // let string = result.join
-    // let num = Number(string)
-    // return num
-
-    }
-
-
-
   hashMod(key) {
-    // Your code here 
+    
   }
 
   insertNoCollisions(key, value) {
