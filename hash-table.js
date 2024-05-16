@@ -1,5 +1,7 @@
 const sha256 = require('js-sha256');
 
+
+// This class is used to make a linked list.
 class KeyValuePair {
   constructor(key, value) {
     this.key = key;
@@ -32,11 +34,7 @@ class HashTable {
 
   insertNoCollisions(key, value) {
     // We need to insert key-value pairs in data array
-
-    let node = new KeyValuePair(key,value)
-
     let indexKey = this.hashMod(key)
-    let indexVal = this.hashMod(value)
 
     if (this.data[indexKey] === null) {
       this.data[indexKey] = ({key, value})
@@ -45,30 +43,63 @@ class HashTable {
       throw new Error('hash collision or same key/value pair already exists!')
     }
 
-
-    // this.data[indexVal] = value
-
-    console.log(this.data)
-
-
-
   }
 
   insertWithHashCollisions(key, value) {
-    // Your code here 
+
+    let node = new KeyValuePair(key, value)
+    let hash = this.hashMod(key)
+
+    if (this.data[hash] === null) {
+      // if the slot in the array is empty, then add a node.
+      this.data[hash] = node
+    } 
+    // We need to find a way to represent a collision
+    
+    else {
+    // we need to make a linked list
+    // The head is the node at the hashed index.
+    // Add a new node to the head'
+
+    // Make the next node the current head
+    node.next = this.data[hash]
+
+    // make the head node the incoming node
+    this.data[hash] = node
+
+  }
+  this.count++;
   }
 
-  insert(key, value) {
-    // If hash collision occurs, throw new Error
-    // throw new Error ()
-  }
 
+
+  // insert(key, value) {
+  //   // let node = new KeyValuePair(key, value)
+  //   // Update values for same KEY inserts
+  //   // We need to iterate over a linked list and see if there are matches
+
+  //   // if (hashTable.insertWithHashCollisions(key,value)) {
+  //   //   this.data[hash] = node
+  //   // }
+
+  // }
 }
 
 
-let hashTable = new HashTable(2)
-console.log(hashTable.insertNoCollisions("key-1", "val-1"))
-console.log(hashTable.data)
-console.log(hashTable.insertNoCollisions("key-2", "val-2"))
 
+
+
+
+  
+
+
+
+
+let hashTable = new HashTable(2)
+console.log(hashTable.insert("key-1", "val-1"))
+console.log(hashTable.insert("key-2", "val-2"));
+console.log(hashTable.insert("key-3", "val-3"));
+console.log(hashTable.insert("key-1", "val-100000"));
+console.log(hashTable)
+// console.log(hashTable.insertWithHashCollisions("key4", "val4"))
 module.exports = HashTable;
