@@ -59,7 +59,7 @@ describe('Hash table methods', () => {
     // First 8 digits of sha256("A") are 0x559aead0
     expect(hashTable.hash("A")).to.equal(1436216016);
 
-    // First 8 digits of sha256("B") are 0xdf7e70e
+    // First 8 digits of sha256("B") are 0xdf7e70e5
     expect(hashTable.hash("B")).to.equal(3749605605);
 
     // First 8 digits of sha256("C") are 0x6b23c0d5
